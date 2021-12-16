@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // react router
 import { Link } from "react-router-dom";
 // redux
@@ -8,12 +8,33 @@ import icon_menu from "../images/icon-menu.svg";
 import icon_menu_following from "../images/icon-menu-following.svg";
 
 export default function Header() {
+  // state
+  const [height, setHeight] = useState(0);
+  const [isPC, setIsPC] = useState(false);
   // redux
   const content = useSelector((state) => state.content);
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 900) {
+      setIsPC(true);
+    }
+  }, []);
+
+  // fix the header when scrolled
+  window.addEventListener("scroll", () => {
+    const scrollY = window.pageYOffset;
+    setHeight(scrollY);
+  });
+
   return content === "" ? (
-    <header className="header">
+    <header className={height > 100 && isPC ? "header header-fixed" : "header"}>
       <div className="header__container">
-        <h1 className="header__logo">
+        <h1
+          className={
+            height > 100 && !isPC ? "header__logo hide-logo" : "header__logo"
+          }
+        >
           よこはま公園
           <br />
           <span>司法書士事務所</span>
@@ -64,7 +85,13 @@ export default function Header() {
       </div>
     </header>
   ) : (
-    <header className="header-following">
+    <header
+      className={
+        height > 100 && isPC
+          ? "header-following header-fixed"
+          : "header-following"
+      }
+    >
       <div className="inner-boundary">
         <div className="header-following__container">
           <h1 className="header-following__logo">
@@ -114,7 +141,13 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <div className="header-following__btn-sp-nav">
+          <div
+            className={
+              height > 100 && !isPC
+                ? "header-following__btn-sp-nav fixed-btn"
+                : "header-following__btn-sp-nav"
+            }
+          >
             <img
               src={icon_menu_following}
               alt="メニューアイコン"
