@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 // redux
 import { setContent } from "../slice/contentSlice";
 import { useDispatch } from "react-redux";
+// images
+import karato from "../images/about/karato.png";
+import harada from "../images/about/harada.png";
+import tatsu from "../images/about/tatsu.png";
 
 export default function About() {
   // redux
@@ -40,7 +44,7 @@ export default function About() {
           <article className="office-members__item">
             <span className="office-members__photo">
               <img
-                src="./img/karato.png"
+                src={karato}
                 alt="司法書士 唐戸小百合（からと さゆり）の写真"
                 width="192"
                 height="192"
@@ -78,7 +82,7 @@ export default function About() {
           <article className="office-members__item">
             <span className="office-members__photo">
               <img
-                src="./img/harada.png"
+                src={harada}
                 alt="司法書士 原田陽子（はらだ ようこ）の写真"
                 width="192"
                 height="192"
@@ -116,7 +120,7 @@ export default function About() {
           <article className="office-members__item">
             <span className="office-members__photo">
               <img
-                src="./img/tatsu.png"
+                src={tatsu}
                 alt="司法書士 龍 英理（たつ えり）の写真"
                 width="192"
                 height="192"

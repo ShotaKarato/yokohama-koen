@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 // redux
 import { setContent } from "../slice/contentSlice";
 import { useDispatch } from "react-redux";
+// images
+import service_housing from "../images/service/service-housing.jpg";
+import service_commerce from "../images/service/service-commerce.jpg";
+import service_inheritance from "../images/service/service-inheritance.jpg";
 
 export default function Service() {
   // redux
@@ -41,7 +45,7 @@ export default function Service() {
               <h4 className="service__item-title">不動産登記</h4>
               <div className="service__item-description">
                 <img
-                  src="./img/service-housing.jpg"
+                  src={service_housing}
                   alt="不動産登記イメージの画像"
                   className="service__image"
                   width="437"
@@ -79,7 +83,7 @@ export default function Service() {
               <h4 className="service__item-title">商業・法人登記</h4>
               <div className="service__item-description">
                 <img
-                  src="./img/service-commerce.jpg"
+                  src={service_commerce}
                   alt="商業・法人登記イメージの画像"
                   className="service__image"
                   width="437"
@@ -117,7 +121,7 @@ export default function Service() {
               <h4 className="service__item-title">遺産承継手続</h4>
               <div className="service__item-description">
                 <img
-                  src="./img/service-inheritance.jpg"
+                  src={service_inheritance}
                   alt="遺産承継手続イメージの画像"
                   className="service__image"
                   width="437"

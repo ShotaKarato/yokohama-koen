@@ -1,15 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+// react router
+import { Link } from "react-router-dom";
 // redux
 import { setContent } from "../slice/contentSlice";
 import { useDispatch } from "react-redux";
+// images
+import heading01 from "../images/heading01.png";
+import icon_location from "../images/icon-location.svg";
+import icon_phone from "../images/icon-phone.svg";
 
 export default function Home() {
+  // states
+  const [parallax, setParallax] = useState([]);
   // redux
   const dispatch = useDispatch();
-  // set content state
+
   useEffect(() => {
+    // set content state
     dispatch(setContent(""));
+    // get parallax elements
+    const parallax = [...document.querySelectorAll(".parallax")];
+    setParallax(parallax);
   }, []);
+
+  //top page (pc): parallax effect
+  window.addEventListener("scroll", () => {
+    for (let i = 0; i < parallax.length; i++) {
+      const rect = parallax[i].getBoundingClientRect().top;
+      const scroll = window.pageYOffset;
+      const offsetTop = rect + scroll;
+      const windowHeight = window.innerHeight;
+
+      if (scroll > offsetTop - windowHeight + 150) {
+        parallax[i].classList.add("scroll-in");
+      }
+    }
+  });
 
   return (
     <main>
@@ -17,7 +43,7 @@ export default function Home() {
         <div className="inner-boundary">
           <h2 className="section-top__heading">
             <img
-              src="./img/heading01.png"
+              src={heading01}
               alt="思い寄り添うよこはま公園司法書士事務所"
               width="643"
               height="146"
@@ -30,9 +56,9 @@ export default function Home() {
           <div className="section-info__container">
             <span className="section-info__time">2020.02.13</span>
             <h3 className="section-info__heading">
-              <a href="" className="section-info__heading-link">
+              <span className="section-info__heading-link">
                 ホームページリニューアルのお知らせ
-              </a>
+              </span>
             </h3>
           </div>
         </div>
@@ -50,9 +76,9 @@ export default function Home() {
                 ような雰囲気作りを心がけております
               </p>
               <div className="section__btnContainer">
-                <a href="./office/index.html" className="section__btn">
+                <Link to="/about" className="section__btn">
                   事務所紹介へ
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -69,9 +95,9 @@ export default function Home() {
                 よこはま公園司法書士事務所にお任せください
               </p>
               <div className="section__btnContainer">
-                <a href="./service/index.html" className="section__btn">
+                <Link to="/service" className="section__btn">
                   取り扱い業務へ
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -97,7 +123,7 @@ export default function Home() {
               <dl className="section-access__location">
                 <dt className="section-access__location-title">
                   <img
-                    src="./img/icon-location.svg"
+                    src={icon_location}
                     alt="所在地アイコン"
                     className="section-access__location-icon"
                   />
@@ -112,7 +138,7 @@ export default function Home() {
               <dl className="section-access__tel">
                 <dt className="section-access__tel-title">
                   <img
-                    src="./img/icon-phone.svg"
+                    src={icon_phone}
                     alt="電話アイコン"
                     className="section-access__tel-icon"
                   />
