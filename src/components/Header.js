@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 // redux
 import { useSelector } from "react-redux";
+// images
+import icon_menu from "../images/icon-menu.svg";
+import icon_menu_following from "../images/icon-menu-following.svg";
 
 export default function Header() {
   // redux
@@ -36,12 +39,7 @@ export default function Header() {
         </ul>
       </nav>
       <div className="header__btn-sp-nav">
-        <img
-          src="./img/icon-menu.svg"
-          alt="メニューアイコン"
-          width="25"
-          height="22"
-        />
+        <img src={icon_menu} alt="メニューアイコン" width="25" height="22" />
         <p className="header__text-sp-nav">MENU</p>
       </div>
       <div className="header__nav-sp">
@@ -118,7 +116,7 @@ export default function Header() {
           </nav>
           <div className="header-following__btn-sp-nav">
             <img
-              src="../img/icon-menu-following.svg"
+              src={icon_menu_following}
               alt="メニューアイコン"
               width="25"
               height="22"

@@ -4,37 +4,33 @@ import { Link } from "react-router-dom";
 // redux
 import { setContent } from "../slice/contentSlice";
 import { useDispatch } from "react-redux";
+// intersection observer
+import { useInView } from "react-intersection-observer";
 // images
 import heading01 from "../images/heading01.png";
 import icon_location from "../images/icon-location.svg";
 import icon_phone from "../images/icon-phone.svg";
 
 export default function Home() {
-  // states
-  const [parallax, setParallax] = useState([]);
   // redux
   const dispatch = useDispatch();
-
   useEffect(() => {
-    // set content state
+    // set content in redux
     dispatch(setContent(""));
-    // get parallax elements
-    const parallax = [...document.querySelectorAll(".parallax")];
-    setParallax(parallax);
-  }, []);
+  });
 
-  //top page (pc): parallax effect
-  window.addEventListener("scroll", () => {
-    for (let i = 0; i < parallax.length; i++) {
-      const rect = parallax[i].getBoundingClientRect().top;
-      const scroll = window.pageYOffset;
-      const offsetTop = rect + scroll;
-      const windowHeight = window.innerHeight;
-
-      if (scroll > offsetTop - windowHeight + 150) {
-        parallax[i].classList.add("scroll-in");
-      }
-    }
+  // intersection observers
+  const [refAbout, inViewAbout] = useInView({
+    rootMargin: "-100px",
+    triggerOnce: true,
+  });
+  const [refService, inViewService] = useInView({
+    rootMargin: "-100px",
+    triggerOnce: true,
+  });
+  const [refAccess, inViewAccess] = useInView({
+    rootMargin: "-100px",
+    triggerOnce: true,
   });
 
   return (
@@ -63,7 +59,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section parallax parallax-up">
+      <section
+        ref={refAbout}
+        className={
+          inViewAbout
+            ? "section parallax parallax-up scroll-in"
+            : "section parallax parallax-up"
+        }
+      >
         <div className="inner-boundary">
           <div className="section__container">
             <div className="section__box">
@@ -84,7 +87,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section section--service parallax parallax-up">
+      <section
+        ref={refService}
+        className={
+          inViewService
+            ? "section section--service parallax parallax-up scroll-in"
+            : "section section--service parallax parallax-up"
+        }
+      >
         <div className="inner-boundary">
           <div className="section__container section__container--service">
             <div className="section__box">
@@ -103,7 +113,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section-access parallax parallax-up">
+      <section
+        ref={refAccess}
+        className={
+          inViewAccess
+            ? "section-access parallax parallax-up scroll-in"
+            : "section-access parallax parallax-up"
+        }
+      >
         <div className="inner-boundary">
           <h3 className="section-access__heading">アクセス・お問い合わせ</h3>
           <div className="section-access__columns">

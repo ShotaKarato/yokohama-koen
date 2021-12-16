@@ -13,7 +13,7 @@ export default function About() {
   // set content state
   useEffect(() => {
     dispatch(setContent("about"));
-  }, []);
+  });
 
   return (
     <main>
