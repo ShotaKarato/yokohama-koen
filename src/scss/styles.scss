@@ -1079,6 +1079,8 @@ body.overlay-open {
     }
     &__btn-sp-nav.fixed-btn {
       position: fixed;
+      height: 50px;
+      width: 50px;
       top: 16px;
       right: 16px;
       z-index: 10000;

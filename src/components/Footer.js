@@ -1,4 +1,6 @@
 import React from "react";
+// react router
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -19,28 +21,19 @@ export default function Footer() {
             <nav className="footer__nav">
               <ul className="footer__nav-list">
                 <li className="footer__nav-list-item">
-                  <a
-                    href="./office/index.html"
-                    className="footer__nav-list-item-link"
-                  >
+                  <Link to="/about" className="footer__nav-list-item-link">
                     事務所紹介
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer__nav-list-item">
-                  <a
-                    href="./service/index.html"
-                    className="footer__nav-list-item-link"
-                  >
+                  <Link to="/service" className="footer__nav-list-item-link">
                     取り扱い業務
-                  </a>
+                  </Link>
                 </li>
                 <li className="footer__nav-list-item">
-                  <a
-                    href="./access/index.html"
-                    className="footer__nav-list-item-link"
-                  >
+                  <Link to="/access" className="footer__nav-list-item-link">
                     アクセス・お問い合わせ
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
