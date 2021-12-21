@@ -8,7 +8,7 @@ import icon_menu from "../images/icon-menu.svg";
 import icon_menu_following from "../images/icon-menu-following.svg";
 
 export default function Header() {
-  // state
+  // states
   const [height, setHeight] = useState(0);
   const [isPC, setIsPC] = useState(false);
   const [visibility, setVisibility] = useState(false);
