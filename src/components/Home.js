@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // react router
 import { Link } from "react-router-dom";
 // redux
@@ -11,7 +11,7 @@ import heading01 from "../images/heading01.png";
 import icon_location from "../images/icon-location.svg";
 import icon_phone from "../images/icon-phone.svg";
 
-export default function Home() {
+export default function Home({ onClick }) {
   // redux
   const dispatch = useDispatch();
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Home() {
           <div className="section-info__container">
             <span className="section-info__time">2020.02.13</span>
             <h3 className="section-info__heading">
-              <span className="section-info__heading-link">
+              <span className="section-info__heading-link" onClick={onClick}>
                 ホームページリニューアルのお知らせ
               </span>
             </h3>

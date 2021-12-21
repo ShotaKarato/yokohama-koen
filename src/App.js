@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/styles.css";
 // react router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,16 +12,22 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import Service from "./components/Service";
 import Access from "./components/Access";
+import Overlay from "./components/Overlay";
 
 function App() {
+  // state for toggling overlay
+  const [visibility, setVisibility] = useState(false);
+  const handleClick = () => {
+    setVisibility((prevVisibility) => !prevVisibility);
+  };
   return (
     <Provider store={store}>
       <Router>
-        <div className="App">
+        <div className={visibility ? "App overlay-open" : "App"}>
           <Header />
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home onClick={handleClick} />
             </Route>
             <Route path="/about">
               <About />
@@ -34,6 +40,7 @@ function App() {
             </Route>
           </Switch>
           <Footer />
+          <Overlay visibility={visibility} onClick={handleClick} />
         </div>
       </Router>
     </Provider>

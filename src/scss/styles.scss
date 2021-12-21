@@ -7,7 +7,7 @@ html {
 body {
   position: relative;
 }
-body.overlay-open {
+.App.overlay-open {
   height: 100vh;
   overflow-y: hidden;
 }
@@ -286,6 +286,78 @@ body.overlay-open {
   &__note {
     font-size: 1.2rem;
   }
+}
+
+//styles for overlay
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  color: $primary-color;
+  background: rgba($color: $primary-color, $alpha: 0.5);
+
+  &__bg {
+    position: relative;
+    width: 50%;
+    height: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+  }
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+  }
+  &__heading {
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 0 0 10px;
+    font-size: 2.4rem;
+    text-align: center;
+    border-bottom: 2px solid $primary-color;
+  }
+  &__date {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+  &__description {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+  &__btn-close {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+  }
+  &__btn-close:before {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 24px;
+    background: $primary-color;
+    transform: rotate(45deg);
+  }
+  &__btn-close:after {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 24px;
+    background: $primary-color;
+    transform: rotate(135deg);
+  }
+}
+.overlay.show-overlay {
+  visibility: visible;
+  width: 100vw;
+  height: 100vh;
 }
 
 //styles for parallax effect
